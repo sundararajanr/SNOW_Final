@@ -3,7 +3,7 @@
   snow_record:
     username: admin
     password: Snow321#
-    instance: dev69726
+    instance: dev67246
     state: present
     table: change_request
     data:
@@ -33,7 +33,7 @@
   snow_record:
     username: admin
     password: Snow321#
-    instance: dev69726
+    instance: dev67246
     state: present
     table: change_task
     data:
