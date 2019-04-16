@@ -1,0 +1,26 @@
+---
+- import_playbook: csv_to_yml.yml
+- name: Conversion process end
+  hosts: localhost
+  tasks:
+    - debug:
+        msg: "Conversion process completed successfully"
+- name: Change creation process begins
+  hosts: localhost
+  vars:
+    contents: "{{ lookup('file', 'Server_Inventory_hosts.yml')| string | from_yaml }}"
+  tasks:
+    - include_tasks: change_task.yml
+      with_items:
+        - "{{contents.serverinventory}}"
+- name: Change creation process end
+  hosts: localhost
+  tasks:
+    - debug:
+        msg: "change creation process completed successfully"
+- name: Copy the file into the data folder
+  hosts: localhost
+  tasks:
+  - copy:
+      src: ./Server_Inventory_Linux.csv
+      dest: ./data/
